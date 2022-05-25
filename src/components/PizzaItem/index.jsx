@@ -21,7 +21,10 @@ function PizzaItem({ title, price, imageUrl, sizes, types }) {
         <ul>
           {types.map((type) => {
             return (
-              <li className={type === activeType ? 'active' : ''} onClick={() => changeType(type)}>
+              <li
+                className={type === activeType ? 'active' : ''}
+                onClick={() => changeType(type)}
+                key={type}>
                 {activeTypes[type]}
               </li>
             );
@@ -32,7 +35,8 @@ function PizzaItem({ title, price, imageUrl, sizes, types }) {
             return (
               <li
                 className={index === activeSize ? 'active' : ''}
-                onClick={() => changeSize(index)}>
+                onClick={() => changeSize(index)}
+                key={size}>
                 {size}
               </li>
             );
