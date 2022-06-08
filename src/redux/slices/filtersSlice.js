@@ -22,10 +22,15 @@ export const filtersSlice = createSlice({
     changePage(state, action) {
       state.currentPage = action.payload;
     },
+    changeFilters(state, action) {
+      state.currentPage = Number(action.payload.currentPage);
+      state.categoryId = Number(action.payload.categoryId);
+      state.sort = action.payload.sort;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { changeCategory, changeSort, changePage } = filtersSlice.actions;
+export const { changeCategory, changeSort, changePage, changeFilters } = filtersSlice.actions;
 
 export default filtersSlice.reducer;

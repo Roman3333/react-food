@@ -16,7 +16,7 @@ function Index({ setSearchValue }) {
 
   const onChangeValue = (e) => {
     setPreValue(e.target.value);
-    delaySearch(e.target.value);
+    delaySearch(preValue);
   };
 
   const onClearInput = () => {

@@ -1,9 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { useSelector } from 'react-redux';
 import Input from '../components/Input';
 
 function Header({ searchValue, setSearchValue }) {
+  const pizzas = useSelector((state) => state.basket.pizzas);
+  const totalPrice = pizzas.reduce((sum, obj) => sum + obj.price * obj.count, 0);
+
   return (
     <div className="header">
       <div className="container">
@@ -19,7 +23,7 @@ function Header({ searchValue, setSearchValue }) {
         <Input searchValue={searchValue} setSearchValue={setSearchValue} />
         <div className="header__cart">
           <Link to="/basket" className="button button--cart">
-            <span>520 ₽</span>
+            <span>{totalPrice} ₽</span>
             <div className="button__delimiter"></div>
             <svg
               width="18"
@@ -46,7 +50,7 @@ function Header({ searchValue, setSearchValue }) {
                 strokeLinecap="round"
                 strokeLinejoin="round"></path>
             </svg>
-            <span>3</span>
+            <span>{pizzas.reduce((sum, obj) => sum + obj.count, 0)}</span>
           </Link>
         </div>
       </div>
