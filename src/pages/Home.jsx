@@ -98,13 +98,22 @@ function Home({ searchValue }) {
         <Sort value={sort} onChangeSort={onChangeSort} />
       </div>
       <h2 className="content__title">Все пиццы</h2>
-      <div className="content__items">
-        {isLoading
-          ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
-          : items.map((item) => {
-              return <PizzaItem {...item} key={item.id} />;
-            })}
-      </div>
+
+      {isLoading === 'error' ? (
+        <div style={{ marginBottom: 30 + 'px', textAlign: 'center' }}>
+          <h2>Возникла ошибка</h2>
+          <div>Не удалось загрузить пиццы</div>
+        </div>
+      ) : (
+        <div className="content__items">
+          {isLoading === 'loading'
+            ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
+            : items.map((item) => {
+                return <PizzaItem {...item} key={item.id} />;
+              })}
+        </div>
+      )}
+
       <Pagination onChangePage={(i) => onChangePage(i)} currentPage={currentPage} />
     </div>
   );

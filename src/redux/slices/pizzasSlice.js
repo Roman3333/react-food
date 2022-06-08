@@ -31,7 +31,7 @@ export const pizzasSlice = createSlice({
       state.isLoading = 'ok';
       state.items = action.payload;
     },
-    [fetchPizzas.rejected]: (state, action) => {
+    [fetchPizzas.rejected]: (state) => {
       state.isLoading = 'error';
       state.items = [];
     },
