@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import qs from 'qs';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import Categories from '../components/Categories';
 import Pagination from '../components/Pagination';
@@ -18,14 +18,14 @@ import {
 
 import { fetchPizzas } from '../redux/slices/pizzasSlice';
 
-function Home({ searchValue }) {
-  const isSearch = useRef(false);
+function Home() {
   const isMounted = useRef(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { categoryId, sort, currentPage } = useSelector(({ filters }) => filters);
   const { items, isLoading } = useSelector((state) => state.pizzas);
+  const searchValue = useSelector((state) => state.pizzas.searchValue);
 
   const onChangeCategory = (id) => {
     dispatch(changeCategory(id));
@@ -76,7 +76,6 @@ function Home({ searchValue }) {
           sort,
         }),
       );
-      isSearch.current = true;
     }
   }, []);
 
@@ -84,11 +83,7 @@ function Home({ searchValue }) {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    if (!isSearch.current) {
-      getPizzas();
-    }
-
-    isSearch.current = false;
+    getPizzas();
   }, [categoryId, sort.sortProperty, searchValue, currentPage]);
 
   return (
@@ -109,7 +104,11 @@ function Home({ searchValue }) {
           {isLoading === 'loading'
             ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
             : items.map((item) => {
-                return <PizzaItem {...item} key={item.id} />;
+                return (
+                  <Link to={`/pizza/${item.id}`} key={item.id}>
+                    <PizzaItem {...item} />
+                  </Link>
+                );
               })}
         </div>
       )}

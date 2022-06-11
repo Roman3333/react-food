@@ -5,19 +5,19 @@ import Header from './components/Header';
 import Home from './pages/Home';
 import Basket from './pages/Basket';
 import NotFound from './pages/NotFound';
+import PizzaPage from './pages/PizzaPage';
 
 import './scss/app.scss';
 
 function App() {
-  const [searchValue, setSearchValue] = useState('');
-
   return (
     <div className="wrapper">
-      <Header searchValue={searchValue} setSearchValue={setSearchValue} />
+      <Header />
       <div className="content">
         <Routes>
-          <Route path="/" element={<Home searchValue={searchValue} />} />
+          <Route path="/" element={<Home />} />
           <Route path="/basket" element={<Basket />} />
+          <Route path="/pizza/:id" element={<PizzaPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

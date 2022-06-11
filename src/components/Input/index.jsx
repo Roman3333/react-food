@@ -1,15 +1,18 @@
 import React, { useRef, useState, useCallback } from 'react';
 import debounce from 'lodash.debounce';
+import { useDispatch } from 'react-redux';
 
+import { changeSearch } from '../../redux/slices/filtersSlice';
 import styles from './Input.module.scss';
 
-function Index({ setSearchValue }) {
+function Index() {
   const [preValue, setPreValue] = useState('');
   const refInput = useRef();
+  const dispatch = useDispatch();
 
   const delaySearch = useCallback(
     debounce((e) => {
-      setSearchValue(e);
+      dispatch(changeSearch(e));
     }, 250),
     [],
   );
@@ -20,7 +23,7 @@ function Index({ setSearchValue }) {
   };
 
   const onClearInput = () => {
-    setSearchValue('');
+    dispatch(changeSearch(''));
     setPreValue('');
     refInput.current.focus();
   };
