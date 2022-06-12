@@ -2,8 +2,8 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 
-const PizzaPage = () => {
-  const [pizza, setPizza] = useState();
+const PizzaPage: React.FC = () => {
+  const [pizza, setPizza] = useState<{ imageUrl: string; title: string; price: number }>();
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ const PizzaPage = () => {
         const { data } = await axios.get('https://628e2b15368687f3e711a7d0.mockapi.io/items/' + id);
         setPizza(data);
       } catch (error) {
-        alert('Ошибка, не удалось загрузить пиццу', error);
+        alert('Ошибка, не удалось загрузить пиццу');
         navigate('/');
       }
     }
@@ -23,7 +23,7 @@ const PizzaPage = () => {
   }, []);
 
   if (!pizza) {
-    return <h2>Идет загрузка</h2>;
+    return <>Идет загрузка</>;
   }
 
   return (

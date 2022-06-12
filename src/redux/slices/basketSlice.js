@@ -16,7 +16,6 @@ export const basketSlice = createSlice({
     //   }, 0);
     // },
     onAddPizza(state, action) {
-      console.log(action);
       const findPizza = state.pizzas.find((obj) => obj.id === action.payload.id);
 
       if (findPizza) {
