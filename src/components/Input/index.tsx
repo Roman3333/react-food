@@ -1,13 +1,13 @@
-import React, { useRef, useState, useCallback } from 'react';
+import React, { useRef, useState, useCallback, ChangeEvent } from 'react';
 import debounce from 'lodash.debounce';
 import { useDispatch } from 'react-redux';
 
 import { changeSearch } from '../../redux/slices/filtersSlice';
 import styles from './Input.module.scss';
 
-function Index() {
-  const [preValue, setPreValue] = useState('');
-  const refInput = useRef();
+const Index: React.FC = () => {
+  const [preValue, setPreValue] = useState<string>('');
+  const refInput = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
 
   const delaySearch = useCallback(
@@ -17,7 +17,7 @@ function Index() {
     [],
   );
 
-  const onChangeValue = (e) => {
+  const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPreValue(e.target.value);
     delaySearch(preValue);
   };
@@ -25,7 +25,7 @@ function Index() {
   const onClearInput = () => {
     dispatch(changeSearch(''));
     setPreValue('');
-    refInput.current.focus();
+    refInput.current?.focus();
   };
 
   return (
@@ -49,6 +49,6 @@ function Index() {
       )}
     </div>
   );
-}
+};
 
 export default Index;

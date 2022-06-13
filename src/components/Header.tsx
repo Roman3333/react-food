@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux';
 
 import Input from '../components/Input';
 
-function Header() {
+const Header: React.FC = () => {
   const pizzas = useSelector((state) => state.basket.pizzas);
-  const totalPrice = pizzas.reduce((sum, obj) => sum + obj.price * obj.count, 0);
+  const totalPrice = pizzas.reduce((sum: number, obj: any) => sum + obj.price * obj.count, 0);
   const location = useLocation();
 
   return (
@@ -52,13 +52,13 @@ function Header() {
                   strokeLinecap="round"
                   strokeLinejoin="round"></path>
               </svg>
-              <span>{pizzas.reduce((sum, obj) => sum + obj.count, 0)}</span>
+              <span>{pizzas.reduce((sum: number, obj: any) => sum + obj.count, 0)}</span>
             </Link>
           )}
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default Header;

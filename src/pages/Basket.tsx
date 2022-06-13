@@ -6,7 +6,7 @@ import { BasketItem } from '../components/BasketItem';
 import { clearPizzas } from '../redux/slices/basketSlice';
 import { CartEmpty } from '../components/EmptyCart';
 
-function Basket() {
+const Basket: React.FC = () => {
   const dispatch = useDispatch();
 
   const pizzas = useSelector((state) => state.basket.pizzas);
@@ -137,6 +137,6 @@ function Basket() {
       </div>
     </div>
   );
-}
+};
 
 export default Basket;

@@ -3,7 +3,25 @@ import { useDispatch } from 'react-redux';
 
 import { onMinusPizza, onRemovePizza, onPlusPizza } from '../redux/slices/basketSlice';
 
-export const BasketItem = ({ title, price, imageUrl, size, type, id, count }) => {
+type BasketItemProps = {
+  title: string;
+  price: number;
+  imageUrl: string;
+  size: number;
+  type: string;
+  id: number;
+  count: number;
+};
+
+export const BasketItem: React.FC<BasketItemProps> = ({
+  title,
+  price,
+  imageUrl,
+  size,
+  type,
+  id,
+  count,
+}) => {
   const dispatch = useDispatch();
 
   const plusPizza = () => {

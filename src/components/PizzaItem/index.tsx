@@ -3,7 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { onAddPizza } from '../../redux/slices/basketSlice';
 
-function PizzaItem({ title, price, imageUrl, sizes, types, id }) {
+type PizzaItemProps = {
+  title: string;
+  price: number;
+  imageUrl: string;
+  sizes: number[];
+  types: number[];
+  id: number;
+};
+
+const PizzaItem: React.FC<PizzaItemProps> = ({ title, price, imageUrl, sizes, types, id }) => {
   const [activeType, setActiveType] = useState(0);
   const [activeSize, setActiveSize] = useState(0);
   const activeTypes = ['Тонкое', 'Традиционное'];
@@ -11,11 +20,11 @@ function PizzaItem({ title, price, imageUrl, sizes, types, id }) {
   const dispatch = useDispatch();
   const pizzaCount = useSelector((state) => state.basket.pizzas.find((obj) => obj.id === id));
 
-  const changeSize = (size) => {
+  const changeSize = (size: number) => {
     setActiveSize(size);
   };
 
-  const changeType = (type) => {
+  const changeType = (type: number) => {
     setActiveType(type);
   };
 
@@ -81,6 +90,6 @@ function PizzaItem({ title, price, imageUrl, sizes, types, id }) {
       </div>
     </div>
   );
-}
+};
 
 export default PizzaItem;

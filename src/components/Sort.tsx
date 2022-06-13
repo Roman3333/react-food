@@ -9,7 +9,7 @@ export const list = [
   { name: 'алфавиту (ASC)', sortProperty: '-title' },
 ];
 
-function Sort({ value, onChangeSort }) {
+const Sort: React.FC = ({ value, onChangeSort }) => {
   const [isOpen, setIsOpen] = useState(false);
   const refSort = useRef();
 
@@ -64,6 +64,6 @@ function Sort({ value, onChangeSort }) {
       )}
     </div>
   );
-}
+};
 
 export default Sort;
