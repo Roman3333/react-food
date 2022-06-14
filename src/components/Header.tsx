@@ -3,9 +3,10 @@ import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import Input from '../components/Input';
+import { RootState } from '../redux/store';
 
 const Header: React.FC = () => {
-  const pizzas = useSelector((state) => state.basket.pizzas);
+  const pizzas = useSelector((state: RootState) => state.basket.pizzas);
   const totalPrice = pizzas.reduce((sum: number, obj: any) => sum + obj.price * obj.count, 0);
   const location = useLocation();
 

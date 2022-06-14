@@ -2,7 +2,7 @@ import React, { useRef, useState, useCallback, ChangeEvent } from 'react';
 import debounce from 'lodash.debounce';
 import { useDispatch } from 'react-redux';
 
-import { changeSearch } from '../../redux/slices/filtersSlice';
+import { changeSearch } from '../../redux/filter/slice';
 import styles from './Input.module.scss';
 
 const Index: React.FC = () => {

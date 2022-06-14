@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-import { onAddPizza } from '../../redux/slices/basketSlice';
+import { onAddPizza } from '../../redux/basket/slice';
+import { BasketItem } from '../../redux/basket/types';
+import { RootState } from '../../redux/store';
 
 type PizzaItemProps = {
   title: string;
@@ -9,7 +12,8 @@ type PizzaItemProps = {
   imageUrl: string;
   sizes: number[];
   types: number[];
-  id: number;
+  id: string;
+  rating: number;
 };
 
 const PizzaItem: React.FC<PizzaItemProps> = ({ title, price, imageUrl, sizes, types, id }) => {
@@ -18,7 +22,9 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ title, price, imageUrl, sizes, ty
   const activeTypes = ['Тонкое', 'Традиционное'];
 
   const dispatch = useDispatch();
-  const pizzaCount = useSelector((state) => state.basket.pizzas.find((obj) => obj.id === id));
+  const pizzaCount = useSelector((state: RootState) =>
+    state.basket.pizzas.find((obj) => obj.id === id),
+  );
 
   const changeSize = (size: number) => {
     setActiveSize(size);
@@ -29,13 +35,14 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ title, price, imageUrl, sizes, ty
   };
 
   const onAddPizzaItem = () => {
-    const obj = {
+    const obj: BasketItem = {
       title,
       price,
       imageUrl,
       size: sizes[activeSize],
       type: activeTypes[activeType],
       id,
+      count: 0,
     };
 
     dispatch(onAddPizza(obj));
@@ -43,8 +50,10 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ title, price, imageUrl, sizes, ty
 
   return (
     <div className="pizza-block">
-      <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
-      <h4 className="pizza-block__title">{title}</h4>
+      <Link to={`/pizza/${id}`}>
+        <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
+        <h4 className="pizza-block__title">{title}</h4>
+      </Link>
       <div className="pizza-block__selector">
         <ul>
           {types.map((type) => {

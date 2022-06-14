@@ -1,6 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IBasketItem, BasketSliceState } from './types';
 
-const initialState = {
+const initialState: BasketSliceState = {
   totalPrice: 0,
   pizzas: [],
 };
@@ -15,7 +16,7 @@ export const basketSlice = createSlice({
     //     return sum + pizza.price;
     //   }, 0);
     // },
-    onAddPizza(state, action) {
+    onAddPizza(state, action: PayloadAction<IBasketItem>) {
       const findPizza = state.pizzas.find((obj) => obj.id === action.payload.id);
 
       if (findPizza) {
@@ -26,24 +27,24 @@ export const basketSlice = createSlice({
 
       state.totalPrice = state.pizzas.reduce((sum, obj) => obj.price * obj.count + sum, 0);
     },
-    onMinusPizza(state, action) {
+    onMinusPizza(state, action: PayloadAction<string>) {
       const findPizza = state.pizzas.find((obj) => obj.id === action.payload);
 
       if (findPizza) {
         findPizza.count--;
       }
     },
-    onPlusPizza(state, action) {
+    onPlusPizza(state, action: PayloadAction<string>) {
       const findPizza = state.pizzas.find((obj) => obj.id === action.payload);
 
       if (findPizza) {
         findPizza.count++;
       }
     },
-    onRemovePizza(state, action) {
+    onRemovePizza(state, action: PayloadAction<string>) {
       state.pizzas = state.pizzas.filter((obj) => obj.id !== action.payload);
     },
-    clearPizzas(state, action) {
+    clearPizzas(state) {
       state.pizzas = [];
       state.totalPrice = 0;
     },

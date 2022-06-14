@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { onMinusPizza, onRemovePizza, onPlusPizza } from '../redux/slices/basketSlice';
+import { onMinusPizza, onRemovePizza, onPlusPizza } from '../redux/basket/slice';
 
 type BasketItemProps = {
   title: string;
@@ -9,7 +9,7 @@ type BasketItemProps = {
   imageUrl: string;
   size: number;
   type: string;
-  id: number;
+  id: string;
   count: number;
 };
 

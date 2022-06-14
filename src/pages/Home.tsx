@@ -1,7 +1,7 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import qs from 'qs';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import Categories from '../components/Categories';
 import Pagination from '../components/Pagination';
@@ -9,37 +9,30 @@ import PizzaItem from '../components/PizzaItem';
 import { Skeleton } from '../components/PizzaItem/PizzaItemSkeleton';
 import Sort, { list } from '../components/Sort';
 
-import {
-  changeCategory,
-  changeSort,
-  changePage,
-  changeFilters,
-} from '../redux/slices/filtersSlice';
+import { changeCategory, changePage, changeFilters } from '../redux/filter/slice';
 
-import { fetchPizzas } from '../redux/slices/pizzasSlice';
+import { fetchPizzas } from '../redux/pizza/slice';
+import { RootState } from '../redux/store';
 
-function Home() {
+const Home: React.FC = () => {
   const isMounted = useRef(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { categoryId, sort, currentPage } = useSelector(({ filters }) => filters);
-  const { items, isLoading } = useSelector((state) => state.pizzas);
-  const searchValue = useSelector((state) => state.pizzas.searchValue);
+  const { categoryId, sort, currentPage, searchValue } = useSelector(
+    (state: RootState) => state.filters,
+  );
+  const { items, isLoading } = useSelector((state: RootState) => state.pizzas);
 
-  const onChangeCategory = (id) => {
+  const onChangeCategory = (id: number) => {
     dispatch(changeCategory(id));
   };
 
-  const onChangeSort = (obj) => {
-    dispatch(changeSort(obj));
-  };
-
-  const onChangePage = (id) => {
+  const onChangePage = (id: number) => {
     dispatch(changePage(id));
   };
 
-  const getPizzas = () => {
+  const getPizzas = async () => {
     const sortBy = sort.sortProperty.replace('-', '');
     const order = sort.sortProperty.includes('-') ? 'asc' : 'desc';
     const category = categoryId > 0 ? `category=${categoryId}` : '';
@@ -90,7 +83,7 @@ function Home() {
     <div className="container">
       <div className="content__top">
         <Categories value={categoryId} onChangeCategory={onChangeCategory} />
-        <Sort value={sort} onChangeSort={onChangeSort} />
+        <Sort value={sort} />
       </div>
       <h2 className="content__title">Все пиццы</h2>
 
@@ -104,11 +97,7 @@ function Home() {
           {isLoading === 'loading'
             ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
             : items.map((item) => {
-                return (
-                  <Link to={`/pizza/${item.id}`} key={item.id}>
-                    <PizzaItem {...item} />
-                  </Link>
-                );
+                return <PizzaItem {...item} key={item.id} />;
               })}
         </div>
       )}
@@ -116,6 +105,6 @@ function Home() {
       <Pagination onChangePage={(i) => onChangePage(i)} currentPage={currentPage} />
     </div>
   );
-}
+};
 
 export default Home;
