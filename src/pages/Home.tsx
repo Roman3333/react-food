@@ -13,6 +13,7 @@ import { changeCategory, changePage, changeFilters } from '../redux/filter/slice
 import { useAppDispatch } from '../redux/store';
 import { fetchPizzas } from '../redux/pizza/slice';
 import { RootState } from '../redux/store';
+import { SearchPizzaParams } from '../redux/pizza/types';
 
 const Home: React.FC = () => {
   const isMounted = useRef(false);
@@ -68,7 +69,7 @@ const Home: React.FC = () => {
     // const params = qs.parse(window.location.search.substring(1)) as unknown as SearchPizzaParams;
     // const sortObj = list.find((obj) => obj.sortProperty === params.sortBy);
     // dispatch(
-    //   setFilters({
+    //   changeFilters({
     //     searchValue: params.search,
     //     categoryId: Number(params.category),
     //     currentPage: Number(params.currentPage),
@@ -80,7 +81,7 @@ const Home: React.FC = () => {
     // isMounted.current = true;
   }, [categoryId, sort.sortProperty, searchValue, currentPage]);
 
-  // Парсим параметры при первом рендере
+  // Создаем параметры при первом рендере
   // React.useEffect(() => {
   //   if (window.location.search) {
   //     const params = qs.parse(window.location.search.substring(1)) as unknown as SearchPizzaParams;
