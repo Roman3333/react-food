@@ -1,17 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, memo } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { changeFilters } from '../redux/filter/slice';
+import { changeSort } from '../redux/filter/slice';
 import { SortType, SortPropertyEnum } from '../redux/filter/types';
-
-export const list: ListItem[] = [
-  { name: 'популярности (DESC)', sortProperty: SortPropertyEnum.RATING_DESC },
-  { name: 'популярности (ASC)', sortProperty: SortPropertyEnum.RATING_ASC },
-  { name: 'цене (DESC)', sortProperty: SortPropertyEnum.PRICE_DESC },
-  { name: 'цене (ASC)', sortProperty: SortPropertyEnum.PRICE_ASC },
-  { name: 'алфавиту (DESC)', sortProperty: SortPropertyEnum.TITLE_DESC },
-  { name: 'алфавиту (ASC)', sortProperty: SortPropertyEnum.TITLE_ASC },
-];
 
 type ListItem = {
   name: string;
@@ -26,13 +17,24 @@ type SortPopupProps = {
   value: SortType;
 };
 
-const Sort: React.FC<SortPopupProps> = ({ value }) => {
+export const list: ListItem[] = [
+  { name: 'популярности (DESC)', sortProperty: SortPropertyEnum.RATING_DESC },
+  { name: 'популярности (ASC)', sortProperty: SortPropertyEnum.RATING_ASC },
+  { name: 'цене (DESC)', sortProperty: SortPropertyEnum.PRICE_DESC },
+  { name: 'цене (ASC)', sortProperty: SortPropertyEnum.PRICE_ASC },
+  { name: 'алфавиту (DESC)', sortProperty: SortPropertyEnum.TITLE_DESC },
+  { name: 'алфавиту (ASC)', sortProperty: SortPropertyEnum.TITLE_ASC },
+];
+
+const Sort: React.FC<SortPopupProps> = memo(({ value }) => {
+  console.log('sort');
+
   const [isOpen, setIsOpen] = useState(false);
   const refSort = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
 
   const changeList = (obj: ListItem) => {
-    dispatch(changeFilters(obj));
+    dispatch(changeSort(obj));
     setIsOpen(false);
   };
 
@@ -83,6 +85,6 @@ const Sort: React.FC<SortPopupProps> = ({ value }) => {
       )}
     </div>
   );
-};
+});
 
 export default Sort;

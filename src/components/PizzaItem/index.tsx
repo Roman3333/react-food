@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { onAddPizza } from '../../redux/basket/slice';
-import { BasketItem } from '../../redux/basket/types';
+import { IBasketItem } from '../../redux/basket/types';
 import { RootState } from '../../redux/store';
 
 type PizzaItemProps = {
@@ -35,7 +35,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ title, price, imageUrl, sizes, ty
   };
 
   const onAddPizzaItem = () => {
-    const obj: BasketItem = {
+    const obj: IBasketItem = {
       title,
       price,
       imageUrl,
