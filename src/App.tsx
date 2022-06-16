@@ -14,7 +14,7 @@ function App() {
       <Header />
       <div className="content">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/pizza-react" element={<Home />} />
           <Route path="/basket" element={<Basket />} />
           <Route path="/pizza/:id" element={<PizzaPage />} />
           <Route path="*" element={<NotFound />} />

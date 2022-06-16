@@ -130,7 +130,7 @@ const Basket: React.FC = () => {
                 />
               </svg>
 
-              <Link to="/">
+              <Link to="/pizza-react">
                 <span>Вернуться назад</span>
               </Link>
             </a>
