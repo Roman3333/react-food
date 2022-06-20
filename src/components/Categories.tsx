@@ -8,8 +8,6 @@ type CategoriesProps = {
 const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
 
 const Categories: React.FC<CategoriesProps> = memo(({ value, onChangeCategory }) => {
-  console.log('categoryes');
-
   return (
     <div className="categories">
       <ul>

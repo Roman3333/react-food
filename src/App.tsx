@@ -9,7 +9,7 @@ import './scss/app.scss';
 const Basket = React.lazy(() => import(/* webpackChunkName: "Basket" */ './pages/Basket'));
 const NotFound = React.lazy(() => import(/* webpackChunkName: "NotFound" */ './pages/NotFound'));
 const PizzaPage = Loadable({
-  loader: () => import(/* webpackChunkName: "FullPizzaЗфпу" */ './pages/PizzaPage'),
+  loader: () => import(/* webpackChunkName: "FullPizzaPage" */ './pages/PizzaPage'),
   loading: () => <div>Загрузка...</div>,
 });
 

@@ -27,8 +27,6 @@ export const list: ListItem[] = [
 ];
 
 const Sort: React.FC<SortPopupProps> = memo(({ value }) => {
-  console.log('sort');
-
   const [isOpen, setIsOpen] = useState(false);
   const refSort = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
