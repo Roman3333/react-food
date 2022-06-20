@@ -1,10 +1,9 @@
+import { calcTotalPrice } from './../../utils/calcTotalPrice';
+import { getBasketFromLS } from './../../utils/getBasketFromLS';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IBasketItem, BasketSliceState } from './types';
 
-const initialState: BasketSliceState = {
-  totalPrice: 0,
-  pizzas: [],
-};
+const initialState: BasketSliceState = getBasketFromLS();
 
 export const basketSlice = createSlice({
   name: 'basket',
@@ -25,7 +24,7 @@ export const basketSlice = createSlice({
         state.pizzas.push({ ...action.payload, count: 1 });
       }
 
-      state.totalPrice = state.pizzas.reduce((sum, obj) => obj.price * obj.count + sum, 0);
+      state.totalPrice = calcTotalPrice(state.pizzas);
     },
     onMinusPizza(state, action: PayloadAction<string>) {
       const findPizza = state.pizzas.find((obj) => obj.id === action.payload);

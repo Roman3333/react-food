@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -6,9 +6,19 @@ import Input from '../components/Input';
 import { RootState } from '../redux/store';
 
 const Header: React.FC = () => {
+  const isMounted = useRef(false);
   const pizzas = useSelector((state: RootState) => state.basket.pizzas);
   const totalPrice = pizzas.reduce((sum: number, obj: any) => sum + obj.price * obj.count, 0);
   const location = useLocation();
+
+  useEffect(() => {
+    if (isMounted.current) {
+      const pizzasJson = JSON.stringify(pizzas);
+      localStorage.setItem('basket', pizzasJson);
+    }
+
+    isMounted.current = true;
+  }, [pizzas]);
 
   return (
     <div className="header">
