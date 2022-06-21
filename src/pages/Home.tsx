@@ -17,7 +17,6 @@ import { SearchPizzaParams } from '../redux/pizza/types';
 
 const Home: React.FC = () => {
   const isMounted = useRef(false);
-  const isSearch = useRef(false);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -53,8 +52,37 @@ const Home: React.FC = () => {
     window.scrollTo(0, 0);
   };
 
+  useEffect(() => {
+    if (window.location.search) {
+      const qsParams = qs.parse(
+        window.location.search.substring(1),
+      ) as unknown as SearchPizzaParams;
+      const sort = list.find((obj) => obj.sortProperty === qsParams.sortBy);
+      dispatch(
+        changeFilters({
+          searchValue: qsParams.search,
+          categoryId: Number(qsParams.category),
+          currentPage: Number(qsParams.currentPage),
+          sort: sort || list[0],
+        }),
+      );
+      console.log(qsParams);
+    }
+  }, []);
+
   // Если изменили параметры и был первый рендер
   useEffect(() => {
+    if (isMounted.current) {
+      const qsParams = qs.stringify({
+        categoryId: categoryId > 0 ? categoryId : null,
+        sort: sort.sortProperty,
+        currentPage,
+      });
+
+      console.log(qsParams);
+      navigate(`?${qsParams}`);
+    }
+
     // if (isMounted.current) {
     // const params = {
     //   categoryId: categoryId > 0 ? categoryId : null,
@@ -79,7 +107,7 @@ const Home: React.FC = () => {
     // );
 
     getPizzas();
-    // isMounted.current = true;
+    isMounted.current = true;
   }, [categoryId, sort.sortProperty, searchValue, currentPage]);
 
   // Если был первый рендер то проверяем url-параметры и сохраняем  в редакс
@@ -105,7 +133,7 @@ const Home: React.FC = () => {
   //   if (!isSearch.current) {
   //     getPizzas();
   //   }
-  isSearch.current = false;
+  // isSearch.current = false;
   // }, []);
 
   return (

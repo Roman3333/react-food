@@ -17,9 +17,9 @@ const Index: React.FC = () => {
     [],
   );
 
-  const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeValue = (e: ChangeEvent<HTMLInputElement>) => {
     setPreValue(e.target.value);
-    delaySearch(preValue);
+    delaySearch(e.target.value);
   };
 
   const onClearInput = () => {
