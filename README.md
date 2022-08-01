@@ -1,5 +1,3 @@
-Mini online store(React/Redux-Toolkit/Typescript)
-
 # Технологии:
 - **ReactJS 18**
 - **TypeScript**
