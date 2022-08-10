@@ -33,7 +33,7 @@ const Home: React.FC = () => {
     dispatch(changePage(id));
   };
 
-  const getPizzas = async () => {
+  const getPizzas = () => {
     const sortBy = sort.sortProperty.replace('-', '');
     const order = sort.sortProperty.includes('-') ? 'asc' : 'desc';
     const category = categoryId > 0 ? String(categoryId) : '';
@@ -66,7 +66,6 @@ const Home: React.FC = () => {
           sort: sort || list[0],
         }),
       );
-      console.log(qsParams);
     }
   }, []);
 
@@ -79,7 +78,6 @@ const Home: React.FC = () => {
         currentPage,
       });
 
-      console.log(qsParams);
       navigate(`?${qsParams}`);
     }
 

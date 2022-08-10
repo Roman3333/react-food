@@ -2,8 +2,11 @@ import React, { useRef, useState, useCallback, ChangeEvent } from 'react';
 import debounce from 'lodash.debounce';
 import { useDispatch } from 'react-redux';
 
-import { changeSearch } from '../../redux/filter/slice';
+import searchImg from '../../assets/img/searching.png';
+import clearInputImg from '../../assets/img/clear-input.svg';
 import styles from './Input.module.scss';
+
+import { changeSearch } from '../../redux/filter/slice';
 
 const Index: React.FC = () => {
   const [preValue, setPreValue] = useState<string>('');
@@ -30,7 +33,7 @@ const Index: React.FC = () => {
 
   return (
     <div className={styles.root}>
-      <img className={styles.icon} src="./img/search.svg" alt="search" />
+      <img className={styles.icon} src={searchImg} alt="search" />
       <input
         className={styles.input}
         ref={refInput}
@@ -42,7 +45,7 @@ const Index: React.FC = () => {
       {preValue && (
         <img
           className={styles.clearSearch}
-          src="./img/clear-input.svg"
+          src={clearInputImg}
           alt="clearSearch"
           onClick={onClearInput}
         />

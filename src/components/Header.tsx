@@ -2,7 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
+import logoImg from './../assets/img/pizza-logo.svg';
 import Input from '../components/Input';
+
 import { RootState } from '../redux/store';
 
 const Header: React.FC = () => {
@@ -25,7 +27,7 @@ const Header: React.FC = () => {
       <div className="container">
         <Link to="/pizza-react">
           <div className="header__logo">
-            <img width="38" src="./img/pizza-logo.svg" alt="Pizza logo" />
+            <img width="38" height={38} src={logoImg} alt="Pizza logo" />
             <div>
               <h1>React Pizza</h1>
               <p>самая вкусная пицца во вселенной</p>

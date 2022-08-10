@@ -4,7 +4,7 @@
 @import './components/all';
 
 body {
-  background-color: $background;
+  background-color: #9099a5;
 }
 
 .wrapper {
@@ -54,7 +54,7 @@ body {
   &__items {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(1, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     grid-column-gap: 11px;
 
     @media (max-width: 1400px) {
@@ -340,7 +340,7 @@ body {
         align-items: center;
         justify-content: center;
         width: 210px;
-
+        background-color: #9099a5;
         border-color: darken($color: $gray-line, $amount: 10);
 
         span {
@@ -350,7 +350,7 @@ body {
         }
 
         &:hover {
-          background-color: darken($color: $gray-line, $amount: 90);
+          background-color: #3d322e;
           border-color: darken($color: $gray-line, $amount: 90);
 
           span {

@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { BasketItem } from '../components/BasketItem';
-import { clearPizzas } from '../redux/basket/slice';
 import { CartEmpty } from '../components/EmptyCart';
+
+import { clearPizzas } from '../redux/basket/slice';
 import { IBasketItem } from '../redux/basket/types';
 import { RootState } from '../redux/store';
 

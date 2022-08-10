@@ -15,11 +15,13 @@
       @include noselect();
 
       &:hover {
-        background-color: darken(#f9f9f9, 2%);
+        background-color: darken(#c9c1c1, 2%);
+        transform: translateY(-3px);
+        transition: all 0.3s ease-in-out;
       }
 
       &:active {
-        background-color: darken(#f9f9f9, 5%);
+        background-color: darken(#c9c1c1, 5%);
       }
 
       &.active {
