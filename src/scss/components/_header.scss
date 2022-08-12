@@ -4,7 +4,19 @@
   border-bottom: 1px solid $gray-line;
   padding: 40px 0;
 
-  .container {
+  &__link {
+    font-size: 20px;
+    margin-right: 18px;
+    &:hover {
+      color: #eaad18;
+    }
+  }
+
+  &__list {
+    display: flex;
+  }
+
+  &__bottom {
     display: flex;
     align-items: center;
     justify-content: space-between;

@@ -6,6 +6,12 @@
     display: flex;
     align-items: center;
 
+    &.active {
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+
     svg {
       margin-right: 8px;
     }

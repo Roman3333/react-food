@@ -140,7 +140,7 @@ const Home: React.FC = () => {
         <Categories value={categoryId} onChangeCategory={onChangeCategory} />
         <Sort value={sort} />
       </div>
-      <h2 className="content__title">Все пиццы</h2>
+      <h2 className="content__title">Пиццы</h2>
 
       {isLoading === 'error' ? (
         <div style={{ marginBottom: 30 + 'px', textAlign: 'center' }}>
@@ -151,9 +151,11 @@ const Home: React.FC = () => {
         <div className="content__items">
           {isLoading === 'loading'
             ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
-            : items.map((item) => {
-                return <PizzaItem {...item} key={item.id} />;
-              })}
+            : items
+                .filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase()))
+                .map((item) => {
+                  return <PizzaItem {...item} key={item.id} />;
+                })}
         </div>
       )}
 

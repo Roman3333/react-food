@@ -1,4 +1,5 @@
 export type Pizza = {
+  includes(f: any): unknown;
   id: string;
   title: string;
   price: number;

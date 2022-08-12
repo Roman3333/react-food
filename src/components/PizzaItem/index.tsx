@@ -49,12 +49,14 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ title, price, imageUrl, sizes, ty
   };
 
   return (
-    <div className="pizza-block">
+    <div className="item-block">
       <Link to={`/pizza/${id}`}>
-        <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
-        <h4 className="pizza-block__title">{title}</h4>
+        <div>
+          <img className="item-block__image" src={imageUrl} alt="Image" />
+        </div>
+        <h4 className="item-block__title">{title}</h4>
       </Link>
-      <div className="pizza-block__selector">
+      <div className="item-block__selector">
         <ul>
           {types.map((type) => {
             return (
@@ -80,8 +82,8 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ title, price, imageUrl, sizes, ty
           })}
         </ul>
       </div>
-      <div className="pizza-block__bottom">
-        <div className="pizza-block__price">от {price} ₽</div>
+      <div className="item-block__bottom">
+        <div className="item-block__price">от {price} ₽</div>
         <div onClick={onAddPizzaItem} className="button button--outline button--add">
           <svg
             width="12"

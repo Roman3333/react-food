@@ -51,7 +51,7 @@ const Sort: React.FC<SortPopupProps> = memo(({ value }) => {
 
   return (
     <div className="sort" ref={refSort}>
-      <div className="sort__label">
+      <div className={isOpen ? 'sort__label active' : 'sort__label'}>
         <svg
           width="10"
           height="6"

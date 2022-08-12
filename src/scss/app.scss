@@ -11,9 +11,9 @@ body {
   width: calc(100vw - 100px);
   height: 100%;
   background-color: #fff;
-  margin: 50px auto;
+  margin: 25px auto;
   border-radius: 10px;
-  max-width: 1400px;
+  max-width: 1300px;
 
   @media (max-width: 645px) {
     width: calc(100vw - 30px);
@@ -43,8 +43,8 @@ body {
   &__title {
     font-weight: 800;
     font-size: 38px;
-    margin-top: 60px;
-    margin-bottom: 50px;
+    margin-top: 45px;
+    margin-bottom: 45px;
 
     @media (max-width: 1060px) {
       text-align: center;
@@ -116,7 +116,7 @@ body {
 }
 
 .container {
-  width: $container-width;
+  width: 95%;
   margin: 0 auto;
 
   &--cart {
