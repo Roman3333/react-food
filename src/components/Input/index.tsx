@@ -40,7 +40,7 @@ const Index: React.FC = () => {
         value={preValue}
         onChange={onChangeValue}
         type="text"
-        placeholder="поиск пиццы"
+        placeholder="поиск"
       />
       {preValue && (
         <img

@@ -1,9 +1,11 @@
-import React, { Suspense } from 'react';
+import React, { useState, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Loadable from 'react-loadable';
 
 import Header from './components/Header';
 import Home from './pages/Home';
+import Footer from './components/Footer';
+
 import './scss/app.scss';
 
 const Basket = React.lazy(() => import(/* webpackChunkName: "Basket" */ './pages/Basket'));
@@ -18,14 +20,23 @@ const FullItemPage = Loadable({
 });
 
 function App() {
+  const [authVisible, setAuthVisible] = React.useState(false);
+
+  const openAuth = () => {
+    setAuthVisible(true);
+  };
+
+  const closeAuth = () => {
+    setAuthVisible(false);
+  };
   return (
     <div className="wrapper">
-      <Header />
+      <Header openAuth={openAuth} closeAuth={closeAuth} authVisible={authVisible} />
       <div className="content">
         <Routes>
           <Route path="/react-food" element={<Home />} />
           <Route
-            path="/stock"
+            path="/react-food/stock"
             element={
               <Suspense fallback={<div>Загрузка...</div>}>
                 <Stock />
@@ -33,7 +44,7 @@ function App() {
             }
           />
           <Route
-            path="/aboutUs"
+            path="/react-food/aboutUs"
             element={
               <Suspense fallback={<div>Загрузка...</div>}>
                 <AboutUs />
@@ -41,7 +52,7 @@ function App() {
             }
           />
           <Route
-            path="/contacts"
+            path="/react-food/contacts"
             element={
               <Suspense fallback={<div>Загрузка...</div>}>
                 <Contacts />
@@ -49,7 +60,7 @@ function App() {
             }
           />
           <Route
-            path="/delivery"
+            path="/react-food/delivery"
             element={
               <Suspense fallback={<div>Загрузка...</div>}>
                 <Delivery />
@@ -57,14 +68,14 @@ function App() {
             }
           />
           <Route
-            path="/basket"
+            path="/react-food/basket"
             element={
               <Suspense fallback={<div>Загрузка корзины</div>}>
                 <Basket />
               </Suspense>
             }
           />
-          <Route path="/pizza/:id" element={<FullItemPage />} />
+          <Route path="/react-food/pizza/:id" element={<FullItemPage />} />
           <Route
             path="*"
             element={
@@ -75,6 +86,7 @@ function App() {
           />
         </Routes>
       </div>
+      <Footer />
     </div>
   );
 }

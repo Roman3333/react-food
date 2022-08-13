@@ -1,0 +1,19 @@
+.contacts {
+  text-align: center;
+
+  &__title {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+
+  &__text {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+
+  &__map {
+    height: 500px;
+    width: 100%;
+    margin-top: 20px;
+  }
+}

@@ -12,12 +12,18 @@ type HeaderList = {
   name: string;
 };
 
-const Header: React.FC = () => {
+type HeaderProps = {
+  authVisible: boolean;
+  openAuth: () => void;
+  closeAuth: () => void;
+};
+
+const Header: React.FC<HeaderProps> = ({ authVisible, openAuth, closeAuth }) => {
   const [list, setList] = useState<HeaderList[]>([
-    { href: '/Stock', name: 'Акции' },
-    { href: '/AboutUs', name: 'О кафе' },
-    { href: '/Contacts', name: 'Контакты' },
-    { href: '/Delivery', name: 'Доставка' },
+    { href: '/react-food/Stock', name: 'Акции' },
+    { href: '/react-food/AboutUs', name: 'О кафе' },
+    { href: '/react-food/Contacts', name: 'Контакты' },
+    { href: '/react-food/Delivery', name: 'Доставка' },
   ]);
   const isMounted = useRef(false);
   const pizzas = useSelector((state: RootState) => state.basket.pizzas);
@@ -34,7 +40,7 @@ const Header: React.FC = () => {
   }, [pizzas]);
 
   return (
-    <div className="header">
+    <header className="header">
       <div className="container">
         <div className="header__bottom">
           <Link to="/react-food">
@@ -54,6 +60,30 @@ const Header: React.FC = () => {
               </Link>
             ))}
           </ul>
+          <div className="header__login">
+            <svg width="22" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path
+                d="M404.816,308.113c-1.685-1.797-3.393-3.579-5.143-5.329c-29.761-29.762-66.236-50.37-106.007-60.423
+			c42.048-20.964,71.004-64.411,71.004-114.5C364.669,57.358,307.311,0,236.809,0S108.948,57.358,108.948,127.86
+			c0,50.089,28.957,93.536,71.004,114.5c-39.771,10.053-76.245,30.661-106.007,60.423c-43.502,43.502-67.46,101.341-67.46,162.864
+			c0,5.633,4.566,10.199,10.199,10.199h309.072C344.472,497.944,372.406,512,403.564,512c56.216,0,101.951-45.735,101.951-101.951
+			C505.515,354.251,460.456,308.787,404.816,308.113z M129.346,127.86c0-59.254,48.208-107.462,107.463-107.462
+			c59.255,0,107.462,48.208,107.462,107.462c0,59.254-48.208,107.463-107.462,107.463
+			C177.555,235.323,129.346,187.116,129.346,127.86z M27.128,455.448c5.338-111.036,97.347-199.727,209.681-199.727
+			c54.695,0,104.564,21.035,141.963,55.431c-44.274,11.103-77.159,51.23-77.159,98.897c0,16.302,3.852,31.72,10.686,45.4H27.128z
+			 M403.564,491.602c-44.968,0-81.553-36.585-81.553-81.553c0-44.968,36.585-81.553,81.553-81.553
+			c44.968,0,81.553,36.585,81.553,81.553C485.117,455.017,448.532,491.602,403.564,491.602z"
+              />
+              <path
+                d="M456.996,404.572l-32.881-32.883c-3.983-3.983-10.441-3.983-14.425,0c-3.983,3.983-3.983,10.441,0,14.425l15.584,15.584
+			h-63.457c-5.633,0-10.199,4.566-10.199,10.199c0,5.633,4.566,10.199,10.199,10.199h63.231l-15.358,15.358
+			c-3.983,3.983-3.984,10.441,0,14.424c1.992,1.992,4.602,2.987,7.212,2.987s5.221-0.996,7.212-2.987l32.882-32.882
+			c1.912-1.912,2.987-4.507,2.987-7.212C459.983,409.079,458.908,406.484,456.996,404.572z"
+              />
+            </svg>
+
+            <span className="header__login-text">Войти</span>
+          </div>
           <div className="header__cart">
             {location.pathname !== '/basket' && (
               <Link to="/basket" className="button button--cart">
@@ -90,7 +120,7 @@ const Header: React.FC = () => {
           </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 
