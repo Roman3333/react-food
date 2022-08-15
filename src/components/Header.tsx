@@ -52,7 +52,7 @@ const Header: React.FC<HeaderProps> = ({ authVisible, openAuth, closeAuth }) => 
               </div>
             </div>
           </Link>
-          {location.pathname !== '/basket' && <Input />}
+          {location.pathname !== '/react-food/basket' && <Input />}
           <ul className="header__list">
             {list.map((item) => (
               <Link to={item.href} key={item.href} className="header__link">
@@ -85,8 +85,8 @@ const Header: React.FC<HeaderProps> = ({ authVisible, openAuth, closeAuth }) => 
             <span className="header__login-text">Войти</span>
           </div>
           <div className="header__cart">
-            {location.pathname !== '/basket' && (
-              <Link to="/basket" className="button button--cart">
+            {location.pathname !== '/react-food/basket' && (
+              <Link to="/react-food/basket" className="button button--cart">
                 <span>{totalPrice} ₽</span>
                 <div className="button__delimiter"></div>
                 <svg
