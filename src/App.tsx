@@ -30,7 +30,7 @@ function App() {
     setAuthVisible(false);
   };
   return (
-    <div className="wrapper">
+    <div className={'wrapper'}>
       <Header openAuth={openAuth} closeAuth={closeAuth} authVisible={authVisible} />
       <div className="content">
         <Routes>
