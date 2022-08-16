@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/react-food/static/css/main.c957eefc.css",
-    "main.js": "/react-food/static/js/main.6f98d09a.js",
+    "main.js": "/react-food/static/js/main.bdbfd6dc.js",
     "Basket.js": "/react-food/static/js/Basket.1488f284.chunk.js",
     "NotFound.css": "/react-food/static/css/NotFound.63a014f0.chunk.css",
     "NotFound.js": "/react-food/static/js/NotFound.09befc1f.chunk.js",
@@ -11,7 +11,7 @@
     "index.html": "/react-food/index.html",
     "static/media/clear-input.svg": "/react-food/static/media/clear-input.157fd6e744848852d19a7ec16b8d9b38.svg",
     "main.c957eefc.css.map": "/react-food/static/css/main.c957eefc.css.map",
-    "main.6f98d09a.js.map": "/react-food/static/js/main.6f98d09a.js.map",
+    "main.bdbfd6dc.js.map": "/react-food/static/js/main.bdbfd6dc.js.map",
     "Basket.1488f284.chunk.js.map": "/react-food/static/js/Basket.1488f284.chunk.js.map",
     "NotFound.63a014f0.chunk.css.map": "/react-food/static/css/NotFound.63a014f0.chunk.css.map",
     "NotFound.09befc1f.chunk.js.map": "/react-food/static/js/NotFound.09befc1f.chunk.js.map",
@@ -19,6 +19,6 @@
   },
   "entrypoints": [
     "static/css/main.c957eefc.css",
-    "static/js/main.6f98d09a.js"
+    "static/js/main.bdbfd6dc.js"
   ]
 }
