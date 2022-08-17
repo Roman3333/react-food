@@ -2,15 +2,15 @@ import React from 'react';
 
 import styles from '../authentication.module.scss';
 
-type LoginProps = {
-  closeAuth: () => void;
-};
+const Login: React.FC = () => {
+  const testName = (e: any) => {
+    e.preventDefault();
+  };
 
-const Login: React.FC<LoginProps> = ({ closeAuth }) => {
   return (
     <>
       <form className={styles.form__right__socials}>
-        <button className={styles.form__right_socials_button}>
+        <button onClick={testName} className={styles.form__right_socials_button}>
           <div className={styles.form__right_socials_button_inner}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +38,7 @@ const Login: React.FC<LoginProps> = ({ closeAuth }) => {
             </span>
           </div>
         </button>
-        <button className={styles.form__right_socials_button}>
+        <button onClick={testName} className={styles.form__right_socials_button}>
           <div className={styles.form__right_socials_button_inner}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -59,7 +59,7 @@ const Login: React.FC<LoginProps> = ({ closeAuth }) => {
             <span className={styles.form__right_socials_button_inner_text}>Почта</span>
           </div>
         </button>
-        <button className={styles.form__right_socials_button}>
+        <button onClick={testName} className={styles.form__right_socials_button}>
           <div className={styles.form__right_socials_button_inner}>
             <svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path

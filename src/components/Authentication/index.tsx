@@ -43,8 +43,8 @@ const Authentication: React.FC<HeaderProps> = ({ authVisible, openAuth, closeAut
           <div className={styles.form__right_title}>
             {!isAuth ? 'Регистрация' : 'Войти в аккаунт'}
           </div>
-          {formType === 'registration' && !isAuth && <Registration closeAuth={closeAuth} />}
-          {formType === 'login' && !!isAuth && <Login closeAuth={closeAuth} />}
+          {formType === 'registration' && !isAuth && <Registration />}
+          {formType === 'login' && !!isAuth && <Login />}
           <div className={styles.form__right_footer}>
             {!isAuth ? (
               <>

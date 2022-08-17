@@ -2,15 +2,14 @@ import React from 'react';
 
 import styles from '../authentication.module.scss';
 
-type RegistrationProps = {
-  closeAuth: () => void;
-};
-
-const Registration: React.FC<RegistrationProps> = ({ closeAuth }) => {
+const Registration: React.FC = () => {
+  const testname = (e: any) => {
+    e.preventDefault();
+  };
   return (
     <>
       <form className={styles.form__right__socials}>
-        <button className={styles.form__right_socials_button}>
+        <button onClick={testname} className={styles.form__right_socials_button}>
           <div className={styles.form__right_socials_button_inner}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -36,7 +35,7 @@ const Registration: React.FC<RegistrationProps> = ({ closeAuth }) => {
             <span className={styles.form__right_socials_button_inner_text}>Телефон</span>
           </div>
         </button>
-        <button className={styles.form__right_socials_button}>
+        <button onClick={testname} className={styles.form__right_socials_button}>
           <div className={styles.form__right_socials_button_inner}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -57,7 +56,7 @@ const Registration: React.FC<RegistrationProps> = ({ closeAuth }) => {
             <span className={styles.form__right_socials_button_inner_text}>Почта</span>
           </div>
         </button>
-        <button className={styles.form__right_socials_button}>
+        <button onClick={testname} className={styles.form__right_socials_button}>
           <div className={styles.form__right_socials_button_inner}>
             <svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path
