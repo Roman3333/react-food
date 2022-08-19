@@ -33,12 +33,17 @@
   &__inner-socials-item {
     font-size: 17px;
     margin-bottom: 5px;
+    cursor: pointer;
   }
 
   &__inner-socials-link {
+    display: flex;
     font-size: 17px;
-    &:hover {
-      color: #eaad18;
+    svg {
+      margin-right: 5px;
+    }
+    &:hover span {
+      color: #f0ddac;
     }
   }
 

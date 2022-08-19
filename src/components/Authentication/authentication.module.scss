@@ -23,6 +23,8 @@
   border-radius: 20px;
   border: 1px solid gray;
   background-color: white;
+  top: 50%;
+  transform: translateY(-50%);
 
   &__left {
     background-color: #d51f66;

@@ -15,11 +15,10 @@ type HeaderList = {
 
 type HeaderProps = {
   authVisible: boolean;
-  openAuth: () => void;
-  closeAuth: () => void;
+  setAuthVisible: (active: boolean) => void;
 };
 
-const Header: React.FC<HeaderProps> = ({ authVisible, openAuth, closeAuth }) => {
+const Header: React.FC<HeaderProps> = ({ authVisible, setAuthVisible }) => {
   const [list, setList] = useState<HeaderList[]>([
     { href: '/react-food/Stock', name: 'Акции' },
     { href: '/react-food/AboutUs', name: 'О кафе' },
@@ -61,7 +60,7 @@ const Header: React.FC<HeaderProps> = ({ authVisible, openAuth, closeAuth }) => 
               </Link>
             ))}
           </ul>
-          <div onClick={() => openAuth()} className="header__login">
+          <div onClick={() => setAuthVisible(true)} className="header__login">
             <svg width="22" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
               <path
                 d="M404.816,308.113c-1.685-1.797-3.393-3.579-5.143-5.329c-29.761-29.762-66.236-50.37-106.007-60.423
@@ -120,7 +119,7 @@ const Header: React.FC<HeaderProps> = ({ authVisible, openAuth, closeAuth }) => 
             )}
           </div>
         </div>
-        <Form openAuth={openAuth} closeAuth={closeAuth} authVisible={authVisible} />
+        <Form setAuthVisible={setAuthVisible} authVisible={authVisible} />
       </div>
     </header>
   );

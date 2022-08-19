@@ -1,0 +1,30 @@
+.delivery {
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__box-img {
+    max-width: 47%;
+    img {
+      max-width: 100%;
+    }
+  }
+
+  &__info {
+    max-width: 47%;
+  }
+
+  &__title {
+    font-size: 34px;
+    margin-bottom: 22px;
+  }
+
+  &__text {
+    margin-bottom: 7px;
+  }
+
+  &__phone {
+    color: blueviolet;
+  }
+}

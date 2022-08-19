@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 import Registration from './forms/Registration';
 import Login from './forms/Login';
@@ -7,27 +7,47 @@ import styles from './authentication.module.scss';
 
 type HeaderProps = {
   authVisible: boolean;
-  openAuth: () => void;
-  closeAuth: () => void;
+  setAuthVisible: (active: boolean) => void;
 };
 
-const Authentication: React.FC<HeaderProps> = ({ authVisible, openAuth, closeAuth }) => {
+type PopupClick = MouseEvent & {
+  path: Node[];
+};
+
+const Authentication: React.FC<HeaderProps> = ({ authVisible, setAuthVisible }) => {
   const [formType, setFormType] = useState<'registration' | 'login' | 'phone' | 'mail'>(
     'registration',
   );
   const [isAuth, setIsAuth] = useState<boolean>(false);
+
+  const refPopup = useRef<HTMLDivElement>(null);
 
   const changeLoginRegistration = () => {
     setIsAuth(!isAuth);
     setFormType(formType == 'login' ? 'registration' : 'login');
   };
 
+  // useEffect(() => {
+  //   const handleClickOutside = (e: MouseEvent) => {
+  //     console.log(authVisible);
+  //     const _e = e as PopupClick;
+
+  //     if (refPopup.current && !_e.path.includes(refPopup.current)) {
+  //       setAuthVisible(false);
+  //     }
+  //   };
+
+  //   document.body.addEventListener('click', handleClickOutside);
+
+  //   return () => document.body.removeEventListener('click', handleClickOutside);
+  // }, []);
+
   return authVisible === true ? (
-    <div className={styles.popup}>
-      <div className={styles.form}>
+    <div onClick={() => setAuthVisible(false)} className={styles.popup}>
+      <div onClick={(e) => e.stopPropagation()} className={styles.form} ref={refPopup}>
         <div className={styles.form__left}></div>
         <div className={styles.form__right}>
-          <div onClick={() => closeAuth()} className={styles.form__right_close}>
+          <div onClick={() => setAuthVisible(false)} className={styles.form__right_close}>
             <svg
               width="24px"
               height="24px"

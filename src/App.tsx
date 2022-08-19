@@ -20,18 +20,11 @@ const FullItemPage = Loadable({
 });
 
 function App() {
-  const [authVisible, setAuthVisible] = React.useState(false);
+  const [authVisible, setAuthVisible] = React.useState<boolean>(false);
 
-  const openAuth = () => {
-    setAuthVisible(true);
-  };
-
-  const closeAuth = () => {
-    setAuthVisible(false);
-  };
   return (
     <div className={'wrapper'}>
-      <Header openAuth={openAuth} closeAuth={closeAuth} authVisible={authVisible} />
+      <Header setAuthVisible={setAuthVisible} authVisible={authVisible} />
       <div className="content">
         <Routes>
           <Route path="/react-food" element={<Home />} />
