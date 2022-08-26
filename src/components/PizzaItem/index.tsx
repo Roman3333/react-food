@@ -50,7 +50,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ title, price, imageUrl, sizes, ty
 
   return (
     <div className="item-block">
-      <Link to={`/pizza/${id}`}>
+      <Link to={`/react-food/pizza/${id}`}>
         <div>
           <img className="item-block__image" src={imageUrl} alt="Image" />
         </div>

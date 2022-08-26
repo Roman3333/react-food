@@ -33,9 +33,7 @@ const Login: React.FC = () => {
 			C193.5,169.446,193.31,173.537,190.683,176.164z"
               />
             </svg>
-            <span className={styles.form__right_socials_button_inner_text}>
-              Попап находиться в процессе разработки =)
-            </span>
+            <span className={styles.form__right_socials_button_inner_text}>Телефон</span>
           </div>
         </button>
         <button onClick={testName} className={styles.form__right_socials_button}>
