@@ -4,32 +4,36 @@ import { useForm } from 'react-hook-form';
 import styles from './authentication-react-hook-form.module.scss';
 
 type Inputs = {
-  fullname: RegExp;
-  phone: string;
+  email: string;
   password: string;
 };
 
-type RegistrationPhoneProps = {
+type LoginEmailProps = {
   setVariant: (variant: 'default') => void;
 };
 
-const RegistrationPhone: React.FC<RegistrationPhoneProps> = ({ setVariant }) => {
+const LoginEmail: React.FC<LoginEmailProps> = ({ setVariant }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm<Inputs>();
 
-  const onSubmit = (data: any) => {
-    alert(JSON.stringify(data));
-  };
+    formState: { errors },
+  } = useForm<Inputs>({
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
 
   const backForm = () => {
     setVariant('default');
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form
+      onSubmit={handleSubmit((data) => {
+        alert(JSON.stringify(data));
+      })}>
       <div className={styles.form__back} onClick={backForm}>
         {'<'} Назад
       </div>
@@ -37,33 +41,26 @@ const RegistrationPhone: React.FC<RegistrationPhoneProps> = ({ setVariant }) => 
         className={styles.form__input}
         placeholder="Имя и фамилия"
         type="name"
-        {...register('fullname', {
+        {...register('email', {
           minLength: 3,
           maxLength: 30,
           required: true,
-          pattern: /^[A-Za-zА-Яа-я]+$/i,
         })}
       />
-      {errors.fullname && <p className={styles.form__p}>Только буквы и не менее 3 символов</p>}
       <input
         className={styles.form__input}
-        type="phone"
-        placeholder="+7 (921) 661-19-82"
+        placeholder="Имя и фамилия"
+        type="name"
         {...register('password', {
-          required: true,
-          minLength: 9,
+          minLength: 3,
           maxLength: 30,
+          required: true,
         })}
       />
-      <input
-        className={styles.form__input}
-        type="password"
-        placeholder="Пароль"
-        {...register('password', { required: true, minLength: 9, maxLength: 30 })}
-      />
+
       <input className={styles.form__input_submit} type="submit" placeholder="Войти" />
     </form>
   );
 };
 
-export default RegistrationPhone;
+export default LoginEmail;

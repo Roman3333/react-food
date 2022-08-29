@@ -53,13 +53,15 @@ const Header: React.FC<HeaderProps> = ({ authVisible, setAuthVisible }) => {
             </div>
           </Link>
           {location.pathname !== '/react-food/basket' && <Input />}
-          <ul className="header__list">
-            {list.map((item) => (
-              <Link to={item.href} key={item.href} className="header__link">
-                <li className="header__item">{item.name}</li>
-              </Link>
-            ))}
-          </ul>
+          <nav>
+            <ul className="header__list">
+              {list.map((item) => (
+                <Link to={item.href} key={item.href} className="header__link">
+                  <li className="header__item">{item.name}</li>
+                </Link>
+              ))}
+            </ul>
+          </nav>
           <div onClick={() => setAuthVisible(true)} className="header__login">
             <svg width="22" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
               <path
@@ -81,11 +83,10 @@ const Header: React.FC<HeaderProps> = ({ authVisible, setAuthVisible }) => {
 			c1.912-1.912,2.987-4.507,2.987-7.212C459.983,409.079,458.908,406.484,456.996,404.572z"
               />
             </svg>
-
             <span className="header__login-text">Войти</span>
           </div>
-          <div className="header__cart">
-            {location.pathname !== '/react-food/basket' && (
+          {location.pathname !== '/react-food/basket' && (
+            <div className="header__cart">
               <Link to="/react-food/basket" className="button button--cart">
                 <span>{totalPrice} ₽</span>
                 <div className="button__delimiter"></div>
@@ -116,8 +117,8 @@ const Header: React.FC<HeaderProps> = ({ authVisible, setAuthVisible }) => {
                 </svg>
                 <span>{pizzas.reduce((sum: number, obj: any) => sum + obj.count, 0)}</span>
               </Link>
-            )}
-          </div>
+            </div>
+          )}
         </div>
         <Form setAuthVisible={setAuthVisible} authVisible={authVisible} />
       </div>

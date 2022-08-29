@@ -131,7 +131,7 @@ const Basket: React.FC = () => {
                 />
               </svg>
 
-              <Link to="/pizza-react">
+              <Link to="/react-food">
                 <span>Вернуться назад</span>
               </Link>
             </a>

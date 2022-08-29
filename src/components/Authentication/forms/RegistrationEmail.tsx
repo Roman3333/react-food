@@ -1,12 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { useForm } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 
 import styles from './authentication-react-hook-form.module.scss';
 
 type Inputs = {
-  example: string;
-  exampleRequired: string;
+  fullname: string;
+  email: string;
+  password: string;
 };
 
 type RegistrationEmailProps = {
@@ -17,46 +17,46 @@ const RegistrationEmail: React.FC<RegistrationEmailProps> = ({ setVariant }) => 
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
-  } = useForm<Inputs>({
-    defaultValues: {
-      example: '',
-      exampleRequired: '',
-    },
-  });
+  } = useForm<Inputs>();
 
-  console.log(watch('example')); // you can watch individual input by pass the name of the input
+  const onSubmit = (data: any) => {
+    alert(JSON.stringify(data));
+  };
 
   const backForm = () => {
     setVariant('default');
   };
 
   return (
-    <form
-      onSubmit={handleSubmit((data) => {
-        alert(JSON.stringify(data));
-      })}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className={styles.form__back} onClick={backForm}>
         {'<'} Назад
       </div>
-
       <input
         className={styles.form__input}
-        {...(register('example'), { required: true, maxLength: 10 })}
+        {...register('fullname', {
+          required: true,
+          maxLength: 30,
+          minLength: 3,
+          pattern: /^[A-Za-zА-Яа-я]+$/i,
+        })}
         placeholder="Имя и фамилия"
+        type="name"
       />
       <input
         className={styles.form__input}
-        {...(register('example'), { required: true, maxLength: 10 })}
+        {...register('email', { required: true, maxLength: 30, minLength: 3 })}
         placeholder="Почта"
+        type="email"
       />
+      {errors.fullname && <p className={styles.form__p}>Только буквы и не менее 3 символов</p>}
       <input
         className={styles.form__input}
-        {...register('exampleRequired', { required: true, maxLength: 10 })}
+        {...register('password', { required: true, maxLength: 30, minLength: 9 })}
         placeholder="Пароль"
+        type="password"
       />
-      {errors.exampleRequired && <p>This field is required</p>}
       <input className={styles.form__input_submit} type="submit" placeholder="Зарегистрироваться" />
     </form>
   );

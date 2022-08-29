@@ -1,8 +1,12 @@
-p {
+.form__p {
   color: #bf1650;
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  transform: translateY(-30px);
 }
 
-p::before {
+.form__p::before {
   display: inline;
   content: '⚠ ';
 }
@@ -15,8 +19,21 @@ p::before {
   outline: none;
   height: 45px;
   background-color: #ebe8e8;
-  border: none;
+  border: 1px solid gray;
   padding: 5px 10px;
+  border-radius: 10px;
+
+  &:hover {
+    background-color: transparent;
+    border-color: #3189db;
+  }
+
+  &:focus {
+    background-color: transparent;
+    border-color: #3189db;
+    box-shadow: 0 0 5px 2px rgb(113 132 187);
+  }
+
   &_submit {
     background-color: #3189db;
     display: block;
