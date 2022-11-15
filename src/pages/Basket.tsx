@@ -1,22 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 
 import { BasketItem } from '../components/BasketItem';
 import { CartEmpty } from '../components/EmptyCart';
 
 import { clearPizzas } from '../redux/basket/slice';
-import { IBasketItem } from '../redux/basket/types';
+import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks';
 import { RootState } from '../redux/store';
 
 const Basket: React.FC = () => {
-  const dispatch = useDispatch();
+  const { pizzas, totalPrice } = useAppSelector((state: RootState) => state.basket);
+  const dispatch = useAppDispatch();
 
-  const pizzas = useSelector((state: RootState) => state.basket.pizzas);
-  const totalPrice = pizzas.reduce(
-    (sum: number, obj: IBasketItem) => sum + obj.price * obj.count,
-    0,
-  );
   const clearBasket = () => {
     dispatch(clearPizzas());
   };

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { onAddPizza } from '../../redux/basket/slice';
+
 import { IBasketItem } from '../../redux/basket/types';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
 import { RootState } from '../../redux/store';
 
 type PizzaItemProps = {
@@ -21,8 +22,8 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ title, price, imageUrl, sizes, ty
   const [activeSize, setActiveSize] = useState(0);
   const activeTypes = ['Тонкое', 'Традиционное'];
 
-  const dispatch = useDispatch();
-  const pizzaCount = useSelector((state: RootState) =>
+  const dispatch = useAppDispatch();
+  const pizzaCount = useAppSelector((state: RootState) =>
     state.basket.pizzas.find((obj) => obj.id === id),
   );
 

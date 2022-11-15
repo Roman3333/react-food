@@ -50,7 +50,7 @@ const RegistrationEmail: React.FC<RegistrationEmailProps> = ({ setVariant }) => 
         placeholder="Почта"
         type="email"
       />
-      {errors.fullname && <p className={styles.form__p}>Только буквы и не менее 3 символов</p>}
+
       <input
         className={styles.form__input}
         {...register('password', { required: true, maxLength: 30, minLength: 9 })}

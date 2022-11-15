@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useCallback } from 'react';
-import { useSelector } from 'react-redux';
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,21 +8,21 @@ import PizzaItem from '../components/PizzaItem';
 import { Skeleton } from '../components/PizzaItem/PizzaItemSkeleton';
 import Sort, { list } from '../components/Sort';
 
-import { changeCategory, changePage, changeFilters } from '../redux/filter/slice';
-import { useAppDispatch } from '../redux/store';
 import { fetchPizzas } from '../redux/pizza/slice';
-import { RootState } from '../redux/store';
+import { changeCategory, changePage, changeFilters } from '../redux/filter/slice';
 import { SearchPizzaParams } from '../redux/pizza/types';
+import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks';
+import { RootState } from '../redux/store';
 
 const Home: React.FC = () => {
   const isMounted = useRef(false);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const { categoryId, sort, currentPage, searchValue } = useSelector(
+  const { categoryId, sort, currentPage, searchValue } = useAppSelector(
     (state: RootState) => state.filters,
   );
-  const { items, isLoading } = useSelector((state: RootState) => state.pizzas);
+  const { items, isLoading } = useAppSelector((state: RootState) => state.pizzas);
 
   const onChangeCategory = useCallback((id: number) => {
     dispatch(changeCategory(id));

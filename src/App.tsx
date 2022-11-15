@@ -1,29 +1,29 @@
-import React, { useState, Suspense } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Loadable from 'react-loadable';
 
-import Header from './components/Header';
 import Home from './pages/Home';
+import Header from './components/Header';
 import Footer from './components/Footer';
 
 import './scss/app.scss';
 
-const Basket = React.lazy(() => import(/* webpackChunkName: "Basket" */ './pages/Basket'));
-const Stock = React.lazy(() => import(/* webpackChunkName: "NotFound" */ './pages/Stock'));
-const AboutUs = React.lazy(() => import(/* webpackChunkName: "NotFound" */ './pages/AboutUs'));
-const Contacts = React.lazy(() => import(/* webpackChunkName: "NotFound" */ './pages/Contacts'));
-const Delivery = React.lazy(() => import(/* webpackChunkName: "NotFound" */ './pages/Delivery'));
-const NotFound = React.lazy(() => import(/* webpackChunkName: "NotFound" */ './pages/NotFound'));
+const Basket = lazy(() => import(/* webpackChunkName: "Basket" */ './pages/Basket'));
+const Stock = lazy(() => import(/* webpackChunkName: "NotFound" */ './pages/Stock'));
+const AboutUs = lazy(() => import(/* webpackChunkName: "NotFound" */ './pages/AboutUs'));
+const Contacts = lazy(() => import(/* webpackChunkName: "NotFound" */ './pages/Contacts'));
+const Delivery = lazy(() => import(/* webpackChunkName: "NotFound" */ './pages/Delivery'));
+const NotFound = lazy(() => import(/* webpackChunkName: "NotFound" */ './pages/NotFound'));
 const FullItemPage = Loadable({
   loader: () => import(/* webpackChunkName: "FullPizzaPage" */ './pages/FullItemPage'),
   loading: () => <div>Загрузка...</div>,
 });
 
 function App() {
-  const [authVisible, setAuthVisible] = React.useState<boolean>(false);
+  const [authVisible, setAuthVisible] = useState<boolean>(false);
 
   return (
-    <div className={'wrapper'}>
+    <div className="wrapper">
       <Header setAuthVisible={setAuthVisible} authVisible={authVisible} />
       <div className="content">
         <Routes>

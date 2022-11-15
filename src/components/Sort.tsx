@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, memo } from 'react';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../hooks/redux-hooks';
 
 import { changeSort } from '../redux/filter/slice';
 import { SortType, SortPropertyEnum } from '../redux/filter/types';
@@ -29,7 +29,7 @@ export const list: ListItem[] = [
 const Sort: React.FC<SortPopupProps> = memo(({ value }) => {
   const [isOpen, setIsOpen] = useState(false);
   const refSort = useRef<HTMLDivElement>(null);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const changeList = (obj: ListItem) => {
     dispatch(changeSort(obj));

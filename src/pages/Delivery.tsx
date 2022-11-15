@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import food from '../assets/img/food.jpg';
 
-const Delivery: React.FC = () => {
+const Delivery: FC = () => {
   return (
     <section className="delivery">
       <div className="container">

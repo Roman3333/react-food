@@ -1,17 +1,17 @@
 import React, { useRef, useState, useCallback, ChangeEvent } from 'react';
 import debounce from 'lodash.debounce';
-import { useDispatch } from 'react-redux';
-
+import { useAppDispatch } from '../../hooks/redux-hooks';
 import searchImg from '../../assets/img/searching.png';
 import clearInputImg from '../../assets/img/clear-input.svg';
-import styles from './Input.module.scss';
 
 import { changeSearch } from '../../redux/filter/slice';
+
+import styles from './Input.module.scss';
 
 const Index: React.FC = () => {
   const [preValue, setPreValue] = useState<string>('');
   const refInput = useRef<HTMLInputElement>(null);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const delaySearch = useCallback(
     debounce((e) => {
